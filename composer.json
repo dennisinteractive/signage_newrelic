@@ -1,0 +1,18 @@
+{
+  "name": "dennisdigital/signage_newrelic",
+  "description": "Newrelic integration for the signage module",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  
+  "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+  ],
+
+  "require": {
+    "drupal/webhooks": "dev-1.x"
+  }
+
+}
