@@ -1,0 +1,8 @@
+name: Signage Newrelic
+type: module
+description: Newrelic integration for the Signage module
+core: 8.x
+package: Dennis
+
+dependencies:
+  - webhooks:webhooks
