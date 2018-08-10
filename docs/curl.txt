@@ -1,0 +1,6 @@
+curl -X POST -H 'Content-type: application/json' \
+--data '{
+          "name": "New Relic test",
+          "status": "unknown"
+        }' \
+ http://digitalsignage.vm8.didev.co.uk/webhook/newrelic

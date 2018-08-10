@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+id: newrelic
+label: newrelic
+payload_url: null
+type: incoming
+last_usage: null
+events: 'a:9:{s:18:"entity:user:create";i:0;s:18:"entity:user:update";i:0;s:18:"entity:user:delete";i:0;s:18:"entity:node:create";i:0;s:18:"entity:node:update";i:0;s:18:"entity:node:delete";i:0;s:21:"entity:comment:create";i:0;s:21:"entity:comment:update";i:0;s:21:"entity:comment:delete";i:0;}'
+response_ok: null
+ref_entity_type: null
+ref_entity_id: null
+secret: null
+content_type: json
