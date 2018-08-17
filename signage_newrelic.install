@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * Create some initial Actions & Events.
+ */
+function signage_newrelic_update_8100() {
+
+  // Output events
+  $output_incident_open_msg = \Drupal\taxonomy\Entity\Term::create([
+    'vid' => 'signage_output_events',
+    'name' => 'NewRelic Incident Open Message',
+    'field_signage_output_event_type' => 2, // Hard code tid as cim can't find the term by name
+    'format' => 'signage_raw',
+    'field_signage_output' => '{
+        "title": "Incident Opened: #[id]",
+        "body": "[name] triggered [condition_name] in [policy_name]\n
+        Threshold\n
+        [details]
+        <img src=\"[violation_chart_url]\" />",
+        "notification_type": "error",
+        "timeout": "180000"
+       }',
+  ]);
+  $output_incident_open_msg->save();
+
+  // Input events
+  $input_incident_open = \Drupal\taxonomy\Entity\Term::create([
+    'vid' => 'signage_input_events',
+    'name' => 'NewRelic Incident Open',
+    'field_signage_subscribe_name' => [
+      'value' => 'newrelic.incident.open',
+    ],
+  ]);
+  $input_incident_open->save();
+
+  // Actions
+  $action_msg = Drupal\node\Entity\Node::create([
+    'type' => 'signage_action',
+    'title'  => 'NewRelic Incident Open',
+    'field_signage_on_input_event' => [
+      'target_id' => $input_incident_open->id(),
+    ],
+    'field_signage_do_output_event' => [
+      'target_id' => $output_incident_open_msg->id(),
+    ],
+  ]);
+  $action_msg->save();
+
+}

@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "current_state": "open",
+  "owner": "",
+  "severity": "CRITICAL",
+  "policy_url": "https://alerts.newrelic.com/accounts/76621/policies/123824",
+  "closed_violations_count": {
+    "critical": 0,
+    "warning": 0
+  },
+  "policy_name": "Signage - Testing",
+  "incident_url": "https://alerts.newrelic.com/accounts/76621/incidents/30681936",
+  "condition_family_id": 534691,
+  "incident_acknowledge_url": "https://alerts.newrelic.com/accounts/76621/incidents/30681936/acknowledge",
+  "targets": [
+    {
+      "id": "46164140",
+      "name": "FAKE SITE - TESTING ALERTS",
+      "link": "https://rpm.newrelic.com/accounts/76621/applications/46164140?tw[start]=1534347911&tw[end]=1534349711",
+      "labels": {},
+      "product": "APM",
+      "type": "Application"
+    }
+  ],
+  "condition_id": 10957508,
+  "duration": 701,
+  "account_id": 76621,
+  "incident_id": 30681936,
+  "event_type": "INCIDENT",
+  "violation_chart_url": "http://gorgon.nr-assets.net/image/08dace5e-e877-4516-a4f5-d21416aafe38?config.legend.enabled=false",
+  "account_name": "Dennis Digital Live",
+  "open_violations_count": {
+    "critical": 1,
+    "warning": 0
+  },
+  "details": "Apdex < 0.99 for at least 5 seconds",
+  "violation_callback_url": "https://rpm.newrelic.com/accounts/76621/applications/46164140?tw[start]=1534347911&tw[end]=1534349711",
+  "condition_name": "Apdex (Low)",
+  "timestamp": 1534349711378
+}

@@ -57,36 +57,34 @@ class WebhookReceiveEventSubscriber implements EventSubscriberInterface {
   public function handleReceive(ReceiveEvent $event) {
 
     $payload = $event->getWebhook()->getPayload();
-    // Identify if this is a jira webook.
+    // Identify if this is a newrelic webook.
     //@todo patch WebhookService to pass the value of receive($name)
     // so we know that it is our webhook.
 
     $uri = \Drupal::request()->getRequestUri();
     if (strpos($uri, '/webhook/newrelic') === FALSE) {
-      // Not a jira webhook.
+      // Not a newrelic webhook.
       return;
     }
 
-    // Just log events for now.
-    \Drupal::logger('signage_newrelic')->info(
-      'Content: %string',
-      [
-        '%string' => \Drupal::request()->getContent(),
-      ]
-    );
+    if (!isset($payload['current_state'])) {
+      // Not the expected payload.
+      return;
+    }
 
+    // Build the source id that will be used by the event.
+    $state = strtolower($payload['current_state']);
+    $type = strtolower($payload['event_type']);
+    $source = 'newrelic.' . $type . '.' . $state;
 
-
-    //    // Build the source id that will be used by the term.
-//    $status = strtolower($payload['build']['status']);
-//    $source = 'newrelic.' . $status;
-//
-//    // Dispatch a signage input event.
-//    $this->inputEvent->setSource($source);
-//    $vals = $payload;
-//    $this->payload->setValues($vals);
-//    $this->inputEvent->setPayload($this->payload);
-//    $this->dispatcher->dispatch('signage.input', $this->inputEvent);
+    // Dispatch a signage input event.
+    $this->inputEvent->setSource($source);
+    $vals = $payload;
+    $vals['id'] = $payload['targets']['id'];
+    $vals['name'] = $payload['targets']['name'];
+    $this->payload->setValues($vals);
+    $this->inputEvent->setPayload($this->payload);
+    $this->dispatcher->dispatch('signage.input', $this->inputEvent);
 
   }
 
