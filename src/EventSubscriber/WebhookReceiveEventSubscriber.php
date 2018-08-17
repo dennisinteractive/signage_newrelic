@@ -80,8 +80,8 @@ class WebhookReceiveEventSubscriber implements EventSubscriberInterface {
     // Dispatch a signage input event.
     $this->inputEvent->setSource($source);
     $vals = $payload;
-    $vals['id'] = $payload['targets']['id'];
-    $vals['name'] = $payload['targets']['name'];
+    $vals['id'] = $payload['targets'][0]['id'];
+    $vals['name'] = $payload['targets'][0]['name'];
     $this->payload->setValues($vals);
     $this->inputEvent->setPayload($this->payload);
     $this->dispatcher->dispatch('signage.input', $this->inputEvent);
